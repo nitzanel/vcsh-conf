@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/nitzanel/work/kenionit/kenionit/templates'
+let g:netrw_dirhist_2='/home/nitzanel/work/kenionit/kenionit/templates/widgets'
+let g:netrw_dirhist_3='/home/nitzanel/work/kenionit/kenionit/static'
+let g:netrw_dirhist_4='/home/nitzanel/work/kenionit/kenionit/templates'
+let g:netrw_dirhist_5='/home/nitzanel/work/kenionit/kenionit/static'
+let g:netrw_dirhist_6='/home/nitzanel/work/kenionit/kenionit/templates'
+let g:netrw_dirhist_7='/home/nitzanel/work/kenionit/kenionit/templates/widgets'
+let g:netrw_dirhist_8='/home/nitzanel/work/kenionit/kenionit/templates'

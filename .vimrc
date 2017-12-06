@@ -1,9 +1,15 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 call plug#begin()
 
 Plug 'a-watson/vim-gdscript'
 Plug 'majutsushi/tagbar'
 Plug 'freitass/todo.txt-vim'
 Plug 'tpope/vim-surround'
+Plug 'godlygeek/tabular'
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
@@ -97,7 +103,7 @@ au BufRead,BufNewFile  *.cs *.py,*.pyw set expandtab
 "    if search('^\t', 'n', 150)
 "        set shiftwidth=4
 "        set noexpandtab
-"    el 
+"    el
 "        set shiftwidth=4
 "        set expandtab
 "    en
@@ -170,8 +176,7 @@ autocmd BufNewFile  *.py	0r ~/.vim/python_template.py
 set scrolloff=5
 
 " commands on startup
-"au VimEnter * vsplit 
+"au VimEnter * vsplit
 "au VimEnter * term
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
-

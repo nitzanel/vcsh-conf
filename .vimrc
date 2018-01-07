@@ -1,15 +1,17 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim autocmd VimEnter * PlugInstall --sync | source $MYVIMRC 
 endif
 call plug#begin()
 
 Plug 'a-watson/vim-gdscript'
+Plug 'leafgarland/typescript-vim'
 Plug 'majutsushi/tagbar'
 Plug 'freitass/todo.txt-vim'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
+Plug 'heavenshell/vim-jsdoc'
+Plug 'nvie/vim-flake8'
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
@@ -175,8 +177,48 @@ set bs=indent,eol,start
 autocmd BufNewFile  *.py	0r ~/.vim/python_template.py
 set scrolloff=5
 
+nnoremap <C-N> :nohlsearch<CR>
 " commands on startup
 "au VimEnter * vsplit
 "au VimEnter * term
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
+
+
+"JsDoc stuff
+let g:jsdoc_allow_input_prompt=1
+let g:jsdoc_input_description=1
+let g:jsdoc_additional_descriptions=1
+let g:jsdoc_return=1
+let g:jsdoc_return_type=1
+let g:jsdoc_return_description=1
+let g:jsdoc_enable_es6=1
+nmap <silent> <C-l> <Plug>(jsdoc)
+" file viewing like nerdtree without nerdtree
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+" Toggle Vexplore with Ctrl-E
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+  endif
+endfunction
+map <silent> <C-E> :call ToggleVExplorer()<CR>
+" html autocomplete closetag
+imap ,/ </<C-X><C-O>

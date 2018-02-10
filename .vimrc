@@ -1,7 +1,3 @@
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim autocmd VimEnter * PlugInstall --sync | source $MYVIMRC 
-endif
 call plug#begin()
 
 Plug 'a-watson/vim-gdscript'
@@ -11,6 +7,7 @@ Plug 'freitass/todo.txt-vim'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'heavenshell/vim-jsdoc'
+Plug 'morhetz/gruvbox'
 Plug 'nvie/vim-flake8'
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
@@ -222,3 +219,8 @@ endfunction
 map <silent> <C-E> :call ToggleVExplorer()<CR>
 " html autocomplete closetag
 imap ,/ </<C-X><C-O>
+set t_Co=256
+set termguicolors
+let g:gruvbox_italic=1
+colorscheme gruvbox
+set background=dark

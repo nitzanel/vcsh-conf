@@ -5,6 +5,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'majutsushi/tagbar'
 Plug 'freitass/todo.txt-vim'
 Plug 'tpope/vim-surround'
+Plug 'rust-lang/rust.vim'
 Plug 'godlygeek/tabular'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'morhetz/gruvbox'
@@ -15,12 +16,11 @@ function! BuildYCM(info)
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
-    !./install.py
+    !./install.py --rust-completer --js-completer
   endif
 endfunction
 
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-
 call plug#end()
 
 set tags+=tags,/home/nitzanel/godot-ide-helper/tags
@@ -38,12 +38,11 @@ let g:tagbar_type_gdscript = {
 
 
 filetype plugin indent on
-let g:molokai_original = 1
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
-"let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion=1
-"let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+" Use the default python - good for (virtual env)
+let g:ycm_python_binary_path = 'python'
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=1
@@ -190,7 +189,6 @@ let g:jsdoc_return=1
 let g:jsdoc_return_type=1
 let g:jsdoc_return_description=1
 let g:jsdoc_enable_es6=1
-nmap <silent> <C-l> <Plug>(jsdoc)
 " file viewing like nerdtree without nerdtree
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
@@ -217,6 +215,9 @@ function! ToggleVExplorer()
   endif
 endfunction
 map <silent> <C-E> :call ToggleVExplorer()<CR>
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>gd :YcmCompleter GetDoc<CR>
+nnoremap <leader>o :only<CR>
 " html autocomplete closetag
 imap ,/ </<C-X><C-O>
 set t_Co=256
@@ -224,3 +225,4 @@ set termguicolors
 let g:gruvbox_italic=1
 colorscheme gruvbox
 set background=dark
+set showcmd 

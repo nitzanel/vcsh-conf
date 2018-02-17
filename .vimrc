@@ -1,7 +1,4 @@
 call plug#begin()
-
-Plug 'a-watson/vim-gdscript'
-Plug 'leafgarland/typescript-vim'
 Plug 'majutsushi/tagbar'
 Plug 'freitass/todo.txt-vim'
 Plug 'tpope/vim-surround'
